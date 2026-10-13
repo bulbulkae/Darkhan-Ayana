@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="kk">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="color-scheme" content="light" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Үйлену тойына шақыру</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #e8eef1;
+        --ink: #10303f;
+        --muted: #4d6672;
+        --gold: #a98138;
+        --card: #f6f9fa;
+        --deep: #10303f;
+        --on-deep: #eaf0f2;
+        /* ФОН ФОТОЛАРЫ: файлдарды index.html жанына салыңыз */
+        --img-hero: url("arms.jpeg");
+        --img-1: url("bg.jpe"); /* шақыру мәтіні */
+        --img-2: url("bg.jpe"); /* маңызды мәліметтер */
+        --img-3: url("bg.jpe"); /* кері санау */
+        --img-4: url("bg.jpe"); /* RSVP */
+        color-scheme: light;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Manrope, system-ui, sans-serif;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      .serif {
+        font-family: "Cormorant Garamond", Georgia, serif;
+        font-weight: 600;
+        margin: 0;
+      }
+      .orn {
+        height: 18px;
+        margin: 0 auto;
+        width: min(320px, 70%);
+        color: var(--gold);
+        display: block;
+      }
+
+      /* Секциялар: толық еніндегі фото фон + оқылу үшін жабындысы */
+      .sec {
+        padding: 72px 24px;
+        background-color: var(--bg);
+        background-image: var(--img);
+        background-size: cover;
+        background-position: center;
+      }
+      .sec .in {
+        max-width: 640px;
+        margin: 0 auto;
+        text-align: center;
+      }
+      .s1 {
+        --img: var(--img-1);
+      }
+      .s2 {
+        --img: var(--img-2);
+      }
+      .s3 {
+        --img: var(--img-3);
+      }
+      .s4 {
+        --img: var(--img-4);
+      }
+
+      /* Hero */
+      .hero {
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 48px 24px;
+        color: #200c04;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        /* background-color: var(--deep); */
+        background-image: var(--img-hero);
+        background-size: cover;
+        background-position: center;
+      }
+      .hero p {
+        margin: 0;
+        text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+      }
+      .hero .kicker {
+        letter-spacing: 0.08em;
+        font-size: 15px;
+        opacity: 0.9;
+      }
+      .hero h1 {
+        font-size: clamp(56px, 16vw, 120px);
+        line-height: 0.95;
+        margin: 28px 0 8px;
+        font-weight: 700;
+        text-shadow: 0 2px 24px rgba(0, 0, 0, 0.35);
+      }
+      .hero h1 span {
+        display: block;
+      }
+      .hero h1 .amp {
+        font-style: italic;
+        color: #e2c27d;
+        font-size: 0.55em;
+        line-height: 1.2;
+      }
+      .hero .orn {
+        color: #e2c27d;
+      }
+      .hero .date {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        margin-top: 20px;
+      }
+      .hero .times {
+        opacity: 0.9;
+        font-size: 15px;
+        margin-top: 6px;
+      }
+      .hero .line {
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+        animation: draw 2.4s ease-out 0.3s forwards;
+      }
+      @keyframes draw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero .line {
+          animation: none;
+          stroke-dashoffset: 0;
+        }
+      }
+
+      .text {
+        font-size: 17px;
+      }
+      .text .big {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 24px;
+        line-height: 1.35;
+        margin: 24px 0;
+      }
+      .text .small {
+        color: var(--muted);
+        margin: 28px 0 4px;
+      }
+      h2 {
+        font-size: 34px;
+        margin-bottom: 28px;
+      }
+
+      .info {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(2, 1fr);
+        text-align: center;
+      }
+      .info div {
+        background: var(--card);
+        border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+        padding: 20px 12px;
+        border-radius: 14px;
+      }
+      .info .wide {
+        grid-column: 1/-1;
+      }
+      .info small {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .info b {
+        display: block;
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        font-weight: 600;
+        margin-top: 2px;
+      }
+      .btn {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 14px 28px;
+        border-radius: 999px;
+        border: 1.5px solid var(--gold);
+        color: var(--ink);
+        text-decoration: none;
+        background: var(--card);
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .btn:hover,
+      .btn.solid {
+        background: var(--gold);
+        color: #fff;
+      }
+      .btn:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      textarea:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+
+      .photo {
+        width: 100%;
+        aspect-ratio: 4/5;
+        object-fit: cover;
+        border-radius: 200px 200px 16px 16px;
+        background: var(--card);
+        display: block;
+        margin-bottom: 24px;
+      }
+
+      .count {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+      .count div {
+        background: var(--card);
+        padding: 18px 4px;
+        border-radius: 12px;
+      }
+      .count b {
+        display: block;
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(34px, 10vw, 52px);
+        line-height: 1;
+        font-weight: 600;
+      }
+      .count small {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      form {
+        text-align: left;
+        display: grid;
+        gap: 18px;
+        margin-top: 8px;
+      }
+      label,
+      legend {
+        font-weight: 600;
+        font-size: 15px;
+      }
+      fieldset {
+        border: 0;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 10px;
+      }
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+        background: var(--card);
+        color: var(--ink);
+        font: inherit;
+      }
+      .choice {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-weight: 500;
+        background: var(--card);
+        padding: 14px;
+        border-radius: 12px;
+        border: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+      }
+      .choice input {
+        accent-color: var(--gold);
+        width: 20px;
+        height: 20px;
+        margin: 0;
+      }
+      form .btn {
+        justify-self: center;
+        margin-top: 8px;
+      }
+      .msg {
+        min-height: 1.5em;
+        text-align: center;
+        color: var(--gold);
+        font-weight: 600;
+      }
+      .lead {
+        color: var(--muted);
+        margin-top: -12px;
+      }
+      footer {
+        padding: 40px 24px calc(40px + env(safe-area-inset-bottom, 0px));
+        text-align: center;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .music {
+        position: fixed;
+        top: calc(12px + env(safe-area-inset-top, 0px));
+        right: 12px;
+        z-index: 10;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid var(--gold);
+        background: color-mix(in srgb, var(--card) 88%, transparent);
+        -webkit-backdrop-filter: blur(6px);
+        backdrop-filter: blur(6px);
+        color: var(--ink);
+        font: inherit;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      .music:focus-visible {
+        outline: 3px solid var(--gold);
+        outline-offset: 3px;
+      }
+      .hero-card {
+        width: min(100%, 520px);
+        padding: 40px 28px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.134);
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        -webkit-backdrop-filter: blur(14px) saturate(120%);
+        backdrop-filter: blur(14px) saturate(120%);
+        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+      }
+      /* жарық панельде қара көлеңкенің керегі жоқ, түстері қаралау болсын */
+      .hero .hero-card p,
+      .hero .hero-card h1 {
+        text-shadow: none;
+      }
+      .hero .hero-card .amp,
+      .hero .hero-card .orn {
+        color: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <audio id="bgm" src="music.mp3" loop preload="none"></audio>
+    <button id="musicBtn" class="music" type="button" aria-pressed="false">
+      ♫ Әуенді қосу
+    </button>
+    <header class="hero">
+      <div class="hero-card">
+        <p class="kicker">Үйлену тойына шақыру</p>
+        <h1>
+          <span id="n1"></span><span class="amp">&amp;</span
+          ><span id="n2"></span>
+        </h1>
+        <svg
+          class="orn"
+          viewBox="0 0 320 18"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          aria-hidden="true"
+        >
+          <path class="line" d="M0 9H120M200 9H320" />
+          <path class="line" d="M160 1l8 8-8 8-8-8z" />
+          <path class="line" d="M140 9c6-8 12-8 20 0M160 9c8-8 14-8 20 0" />
+        </svg>
+        <p class="date" id="dateText"></p>
+        <p class="times" id="timesText"></p>
+      </div>
+    </header>
+
+    <section class="sec s1 text">
+      <div class="in">
+        <p class="serif" style="font-size: 28px; margin: 0 0 8px">
+          Құрметті ағайын-туыс, құда-жекжат, дос-жарандар!
+        </p>
+        <p class="big" id="inviteText"></p>
+        <p class="small">Құрметпен, той иелері:</p>
+        <p class="serif" style="font-size: 26px; margin: 0" id="hosts"></p>
+      </div>
+    </section>
+
+    <section class="sec s2">
+      <div class="in">
+        <img class="photo" id="photo" src="./arms.jpeg" />
+        <h2>Маңызды мәліметтер</h2>
+        <div class="info">
+          <div><small>Күні</small><b id="iDate"></b></div>
+          <div><small>Тойдың басталуы</small><b id="iStart"></b></div>
+          <div class="wide">
+            <small>Тойхана</small><b id="iVenue"></b
+            ><small id="iAddr" style="margin-top: 4px"></small>
+          </div>
+        </div>
+        <a class="btn" id="mapBtn" target="_blank" rel="noopener"
+          >Картаны ашу</a
+        >
+      </div>
+    </section>
+
+    <section class="sec s3">
+      <div class="in">
+        <h2>Тойға дейін қалды</h2>
+        <div class="count" aria-live="off">
+          <div><b id="cd">0</b><small>күн</small></div>
+          <div><b id="ch">0</b><small>сағат</small></div>
+          <div><b id="cm">0</b><small>минут</small></div>
+          <div><b id="cs">0</b><small>секунд</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec s4">
+      <div class="in">
+        <h2>Қатысуыңызды растаңыз</h2>
+        <p class="lead">
+          Келе алатыныңызды белгілеп кетсеңіз, біз үшін үлкен көмек болады.
+        </p>
+        <form id="rsvp">
+          <div>
+            <label for="name">Аты-жөніңіз</label
+            ><input type="text" id="name" required autocomplete="name" />
+          </div>
+          <fieldset>
+            <legend>Тойға келе аласыз ба?</legend>
+            <label class="choice"
+              ><input type="radio" name="att" value="yes" checked /> Иә,
+              қуана-қуана қатысамын</label
+            >
+            <label class="choice"
+              ><input type="radio" name="att" value="no" /> Өкінішке қарай,
+              қатыса алмаймын</label
+            >
+          </fieldset>
+          <div id="guestBox">
+            <label for="cnt">Қанша адам болып келесіз?</label>
+            <select id="cnt">
+              <option>Тек өзім</option>
+              <option>2 адам</option>
+              <option>3 адам</option>
+              <option>4 адам</option>
+              <option>Одан көп</option>
+            </select>
+            <label for="others" style="display: block; margin-top: 14px"
+              >Бірге келетіндердің аты-жөні</label
+            >
+            <textarea id="others" rows="2"></textarea>
+          </div>
+          <button class="btn solid" type="submit">Жауапты жіберу</button>
+          <p class="msg" id="msg" role="status"></p>
+        </form>
+      </div>
+    </section>
+
+    <footer><span id="foot"></span></footer>
+
+    <script>
+      /* ====== ОСЫ ЖЕРДЕГІ МӘЛІМЕТТЕРДІ ӨЗГЕРТІҢІЗ ====== */
+      var C = {
+        groom: "Дархан",
+        bride: "Аяна",
+        dateISO: "2026-11-06T19:00:00+05:00",
+        dateLabel: "6 қараша 2026",
+        dateShort: "6.11.2026",
+        start: "19:00",
+        venue: "«Нұр - Шашу»",
+        address: "Түлкібас ауданы Тұрар Рысқұлов ауылы",
+        mapUrl: "https://2gis.kz/firm/70000001113951846",
+        hosts: "Ерғали – Айман",
+        sheetUrl:
+          "https://script.google.com/macros/s/AKfycbyEVLe8u72j4nZAmLjXz5oEsydh03L9Eve37PB45LzLmOuNn5OfLwZ9nToscjGpB7qPFw/exec",
+        photo: "",
+      };
+      /* ================================================== */
+      var $ = function (id) {
+        return document.getElementById(id);
+      };
+      document.title = C.groom + " & " + C.bride + " — " + C.dateShort;
+      $("n1").textContent = C.groom;
+      $("n2").textContent = C.bride;
+      $("dateText").textContent = C.dateLabel;
+      $("timesText").textContent = C.start;
+      $("inviteText").textContent =
+        "Сіздерді ұлымыз бен келініміз " +
+        C.groom +
+        " мен " +
+        C.bride +
+        "ның шаңырақ көтеру тойына арналған ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!";
+      $("hosts").textContent = C.hosts;
+      $("iDate").textContent = C.dateLabel;
+      $("iStart").textContent = C.start;
+      $("iVenue").textContent = C.venue;
+      $("iAddr").textContent = C.address;
+      $("mapBtn").href = C.mapUrl;
+      $("foot").textContent = C.groom + " & " + C.bride + " · " + C.dateShort;
+      if (C.photo) {
+        var p = $("photo");
+        p.src = C.photo;
+        p.hidden = false;
+      }
+
+      var target = new Date(C.dateISO).getTime();
+      function tick() {
+        var d = Math.max(0, target - Date.now()),
+          s = Math.floor(d / 1000);
+        $("cd").textContent = Math.floor(s / 86400);
+        $("ch").textContent = Math.floor((s % 86400) / 3600);
+        $("cm").textContent = Math.floor((s % 3600) / 60);
+        $("cs").textContent = s % 60;
+      }
+      tick();
+      setInterval(tick, 1000);
+
+      var form = $("rsvp");
+      form.addEventListener("change", function () {
+        $("guestBox").hidden = form.att.value === "no";
+      });
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var btn = form.querySelector("button[type=submit]");
+        var yes = form.att.value === "yes";
+        var data = new URLSearchParams({
+          name: $("name").value.trim(),
+          attend: yes ? "Иә" : "Жоқ",
+          count: yes ? $("cnt").value : "",
+          others: yes ? $("others").value.trim() : "",
+        });
+        btn.disabled = true;
+        $("msg").textContent = "Жіберілуде...";
+        fetch(C.sheetUrl, { method: "POST", mode: "no-cors", body: data }).then(
+          function () {
+            $("msg").textContent = "Рақмет! Жауабыңыз қабылданды ♡";
+            form.reset();
+            $("guestBox").hidden = false;
+          },
+          function () {
+            $("msg").textContent =
+              "Жіберілмеді. Интернетті тексеріп, қайта көріңіз.";
+            btn.disabled = false;
+          },
+        );
+      });
+
+      /* Әуен */
+      var bgm = $("bgm"),
+        mbtn = $("musicBtn"),
+        userPaused = false;
+
+      function setMusicState(on) {
+        mbtn.textContent = on ? "♫ Әуенді өшіру" : "♫ Әуенді қосу";
+        mbtn.setAttribute("aria-pressed", on ? "true" : "false");
+      }
+      function playMusic() {
+        bgm.play().then(
+          function () {
+            setMusicState(true);
+          },
+          function () {
+            setMusicState(false);
+          },
+        );
+      }
+      mbtn.addEventListener("click", function () {
+        if (bgm.paused) {
+          userPaused = false;
+          playMusic();
+        } else {
+          userPaused = true;
+          bgm.pause();
+          setMusicState(false);
+        }
+      });
+      /* Бетке бірінші рет түртсе, әуен өздігінен басталады */
+      document.addEventListener(
+        "pointerdown",
+        function (e) {
+          if (mbtn.contains(e.target)) return;
+          if (!userPaused && bgm.paused) playMusic();
+        },
+        { once: true },
+      );
+      /* Басқа қосымшаға өтсе, әуен тоқтап, қайта оралғанда жалғасады */
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) bgm.pause();
+        else if (mbtn.getAttribute("aria-pressed") === "true") bgm.play();
+      });
+    </script>
+  </body>
+</html>
